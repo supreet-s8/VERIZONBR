@@ -1,0 +1,57 @@
+
+
+en
+conf t
+pmx subshell oozie add dataset exp_bizrl_agg1m
+pmx subshell oozie set dataset exp_bizrl_agg1m attribute startOffset 1
+pmx subshell oozie set dataset exp_bizrl_agg1m attribute frequency 1
+pmx subshell oozie set dataset exp_bizrl_agg1m attribute endOffset 1
+pmx subshell oozie set dataset exp_bizrl_agg1m attribute outputOffset 1
+pmx subshell oozie set dataset exp_bizrl_agg1m attribute path /data/BR_OUT/BizRulesAgg_Month/%Y/%M/%D/X.MAPREDUCE.0.0
+pmx subshell oozie set dataset exp_bizrl_agg1m attribute pathType hdfs
+pmx subshell oozie set dataset exp_bizrl_agg1m attribute frequencyUnit month
+pmx subshell oozie set dataset exp_bizrl_agg1m attribute startTime 2012-12-29T00:00Z
+pmx subshell oozie add dataset exp_topAs_agg1m
+pmx subshell oozie set dataset exp_topAs_agg1m attribute startOffset 1
+pmx subshell oozie set dataset exp_topAs_agg1m attribute frequency 1
+pmx subshell oozie set dataset exp_topAs_agg1m attribute endOffset 1
+pmx subshell oozie set dataset exp_topAs_agg1m attribute outputOffset 1
+pmx subshell oozie set dataset exp_topAs_agg1m attribute path /data/BR_OUT/TopAsAgg_Month/%Y/%M/%D/X.MAPREDUCE.0.[0-1]
+pmx subshell oozie set dataset exp_topAs_agg1m attribute pathType hdfs
+pmx subshell oozie set dataset exp_topAs_agg1m attribute frequencyUnit month
+pmx subshell oozie set dataset exp_topAs_agg1m attribute startTime 2012-12-29T00:00Z
+pmx subshell oozie add dataset exp_topInt_agg1m
+pmx subshell oozie set dataset exp_topInt_agg1m attribute startOffset 1
+pmx subshell oozie set dataset exp_topInt_agg1m attribute frequency 1
+pmx subshell oozie set dataset exp_topInt_agg1m attribute endOffset 1
+pmx subshell oozie set dataset exp_topInt_agg1m attribute outputOffset 1
+pmx subshell oozie set dataset exp_topInt_agg1m attribute doneFile _DONE
+pmx subshell oozie set dataset exp_topInt_agg1m attribute path /data/BR_OUT/TopIntAgg_Month/%Y/%M/%D/
+pmx subshell oozie set dataset exp_topInt_agg1m attribute pathType hdfs
+pmx subshell oozie set dataset exp_topInt_agg1m attribute frequencyUnit month
+pmx subshell oozie set dataset exp_topInt_agg1m attribute startTime 2012-12-29T00:00Z
+pmx subshell oozie add job export_agg_1m ExporterJob /opt/etc/oozie/CubeExporter
+pmx subshell oozie set job export_agg_1m attribute jobStart 2013-08-01T05:00Z
+pmx subshell oozie set job export_agg_1m attribute jobEnd 2033-09-01T05:00Z
+pmx subshell oozie set job export_agg_1m attribute jobFrequency 1
+pmx subshell oozie set job export_agg_1m attribute frequencyUnit month
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute binInterval 3600
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute instaPort 11111
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute instaHost 108.55.163.93
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute aggregationInterval -1
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute className com.guavus.exporter.Exporter
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute binClasses 1mAggr
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute binClassGranSuffix Month
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute fileType Seq
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute jarName /opt/tms/java/CubeCreator.jar
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute maxTimeout 9000
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute minTimeout 6000
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute retrySleep 300
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute hadoopClientOption -Xmx20000M
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute solutionName reflex.bizreflex
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute binsToPersistOneTime 0
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute srcDatasets exp_bizrl_agg1m
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute srcDatasets exp_topAs_agg1m
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute srcDatasets exp_topInt_agg1m
+pmx subshell oozie set job export_agg_1m action ExporterAction attribute timeZone US/Eastern
+wr mem

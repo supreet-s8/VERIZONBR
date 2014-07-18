@@ -1,0 +1,53 @@
+
+en
+conf t
+pmx subshell oozie add dataset eib
+pmx subshell oozie set dataset eib attribute frequency 3
+pmx subshell oozie set dataset eib attribute frequencyUnit hour
+pmx subshell oozie set dataset eib attribute path /data/routing/eib/eib.
+pmx subshell oozie set dataset eib attribute pathType hdfs
+pmx subshell oozie set dataset eib attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie add dataset asib
+pmx subshell oozie set dataset asib attribute frequency 3
+pmx subshell oozie set dataset asib attribute frequencyUnit hour
+pmx subshell oozie set dataset asib attribute path /data/routing/asib/asib.
+pmx subshell oozie set dataset asib attribute pathType hdfs
+pmx subshell oozie set dataset asib attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie add dataset merged_ib_binary
+pmx subshell oozie set dataset merged_ib_binary attribute frequency 3
+pmx subshell oozie set dataset merged_ib_binary attribute frequencyUnit hour
+pmx subshell oozie set dataset merged_ib_binary attribute path /data/routing/merged_asib/mergedEibAsib.
+pmx subshell oozie set dataset merged_ib_binary attribute pathType hdfs
+pmx subshell oozie set dataset merged_ib_binary attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie add dataset pop
+pmx subshell oozie set dataset pop attribute frequency 3
+pmx subshell oozie set dataset pop attribute frequencyUnit hour
+pmx subshell oozie set dataset pop attribute path /data/routing/pop/pop.
+pmx subshell oozie set dataset pop attribute pathType hdfs
+pmx subshell oozie set dataset pop attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie add dataset bgpdumps
+pmx subshell oozie set dataset bgpdumps attribute frequency 3
+pmx subshell oozie set dataset bgpdumps attribute frequencyUnit hour
+pmx subshell oozie set dataset bgpdumps attribute path /data/routing/bgp/tables/bview.
+pmx subshell oozie set dataset bgpdumps attribute pathType local
+pmx subshell oozie set dataset bgpdumps attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie add dataset gleaning
+pmx subshell oozie set dataset gleaning attribute frequency 1
+pmx subshell oozie set dataset gleaning attribute frequencyUnit hour
+pmx subshell oozie set dataset gleaning attribute path /data/_BizreflexCubes/Gleaning/gleaning.
+pmx subshell oozie set dataset gleaning attribute pathType hdfs
+pmx subshell oozie set dataset gleaning attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie add job sla1 SLA_CleanUpProcessedData /opt/etc/oozie/Reflex/SLA_CleanUpProcessedData
+pmx subshell oozie set job sla1 attribute jobStart  2013-04-15T01:55Z
+pmx subshell oozie set job sla1 attribute jobEnd 2020-04-15T01:55Z
+pmx subshell oozie set job sla1 attribute jobFrequency 1
+pmx subshell oozie set job sla1 attribute frequencyUnit day
+pmx subshell oozie set job sla1 action SLA_CleanUpProcessedDataAction attribute cleanupOffset 15
+pmx subshell oozie set job sla1 action SLA_CleanUpProcessedDataAction attribute cleanupDatasets eib
+pmx subshell oozie set job sla1 action SLA_CleanUpProcessedDataAction attribute cleanupDatasets asib
+pmx subshell oozie set job sla1 action SLA_CleanUpProcessedDataAction attribute cleanupDatasets merged_ib_binary
+pmx subshell oozie set job sla1 action SLA_CleanUpProcessedDataAction attribute cleanupDatasets pop
+pmx subshell oozie set job sla1 action SLA_CleanUpProcessedDataAction attribute cleanupDatasets gleaning
+pmx subshell oozie set job sla1 action SLA_CleanUpProcessedDataAction attribute cleanupDatasets bgpdumps
+pmx subshell oozie set job sla1 action SLA_CleanUpProcessedDataAction attribute solutionName bizreflex
+wr me

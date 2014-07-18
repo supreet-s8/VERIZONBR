@@ -1,0 +1,54 @@
+
+
+en
+conf t
+pmx subshell oozie add dataset ds_base_in
+pmx subshell oozie set dataset ds_base_in attribute startOffset 12
+pmx subshell oozie set dataset ds_base_in attribute frequency 5 
+pmx subshell oozie set dataset ds_base_in attribute endOffset 1
+pmx subshell oozie set dataset ds_base_in attribute doneFile _DONE
+pmx subshell oozie set dataset ds_base_in attribute outputOffset 0
+pmx subshell oozie set dataset ds_base_in attribute path /data/netflow/%Y/%M/%D/%H/%mi/
+pmx subshell oozie set dataset ds_base_in attribute startTime 2012-12-29T00:00Z
+pmx subshell oozie set dataset ds_base_in attribute pathType hdfs    
+pmx subshell oozie set dataset ds_base_in attribute frequencyUnit minute    
+pmx subshell oozie add dataset ds_base_out
+pmx subshell oozie set dataset ds_base_out attribute startOffset 1
+pmx subshell oozie set dataset ds_base_out attribute frequency 60
+pmx subshell oozie set dataset ds_base_out attribute endOffset 1
+pmx subshell oozie set dataset ds_base_out attribute outputOffset 1
+pmx subshell oozie set dataset ds_base_out attribute doneFile _DONE
+pmx subshell oozie set dataset ds_base_out attribute path /data/BR_OUT/MasterJob/%Y/%M/%D/%H/
+pmx subshell oozie set dataset ds_base_out attribute pathType hdfs    
+pmx subshell oozie set dataset ds_base_out attribute frequencyUnit minute    
+pmx subshell oozie set dataset ds_base_out attribute startTime 2012-12-29T00:00Z
+pmx subshell oozie add dataset ds_prefix_out
+pmx subshell oozie set dataset ds_prefix_out attribute startOffset 1
+pmx subshell oozie set dataset ds_prefix_out attribute frequency 60  
+pmx subshell oozie set dataset ds_prefix_out attribute endOffset 1
+pmx subshell oozie set dataset ds_prefix_out attribute outputOffset 1
+pmx subshell oozie set dataset ds_prefix_out attribute doneFile _DONE
+pmx subshell oozie set dataset ds_prefix_out attribute path /data/BR_OUT/PrefixJob/%Y/%M/%D/%H/
+pmx subshell oozie set dataset ds_prefix_out attribute pathType hdfs   
+pmx subshell oozie set dataset ds_prefix_out attribute frequencyUnit minute   
+pmx subshell oozie set dataset ds_prefix_out attribute startTime 2012-12-29T00:00Z
+pmx subshell oozie add job master_job BizreflexMasterJob /opt/etc/oozie/BizreflexMasterCubes
+pmx subshell oozie set job master_job attribute jobStart 2013-06-01T01:00Z
+pmx subshell oozie set job master_job attribute jobFrequency 60      
+pmx subshell oozie set job master_job attribute jobEnd 2033-08-29T11:00Z
+pmx subshell oozie set job master_job attribute frequencyUnit minute 
+pmx subshell oozie set job master_job action ExecuteBaseJob attribute jarFile /opt/tms/java/CubeCreator.jar
+pmx subshell oozie set job master_job action ExecuteBaseJob attribute mainClass com.guavus.mapred.reflex.bizreflex.job.MasterJob.MasterCubes
+pmx subshell oozie set job master_job action ExecuteBaseJob attribute configFile /data/IBS/config_masterjob.xml 
+pmx subshell oozie set job master_job action ExecuteBaseJob attribute inputDatasets ds_base_in           
+pmx subshell oozie set job master_job action ExecuteBaseJob attribute outputDataset ds_base_out           
+pmx subshell oozie set job master_job action ExecuteBaseJob attribute instaHost 108.55.163.93 
+pmx subshell oozie set job master_job action ExecuteBaseJob attribute instaPort 11111
+pmx subshell oozie set job master_job action ExecuteBaseJob attribute snapshotDatasets ds_base_out
+pmx subshell oozie set job master_job action ExecuteBaseJob attribute enableTraps true
+pmx subshell oozie set job master_job action ExecutePrefixJob attribute jarFile /opt/tms/java/CubeCreator.jar
+pmx subshell oozie set job master_job action ExecutePrefixJob attribute mainClass com.guavus.mapred.reflex.bizreflex.job.PrefixAsJob.PrefixAsCubes
+pmx subshell oozie set job master_job action ExecutePrefixJob attribute configFile /data/IBS/config_masterjob.xml
+pmx subshell oozie set job master_job action ExecutePrefixJob attribute outputDataset ds_prefix_out
+pmx subshell oozie set job master_job action ExecutePrefixJob attribute snapshotDatasets ds_prefix_out
+wr mem

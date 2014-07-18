@@ -1,0 +1,25 @@
+
+
+en
+conf t
+pmx subshell oozie add dataset upg_prefix_ds_out
+pmx subshell oozie set dataset upg_prefix_ds_out attribute path /data/BR_OUT/PrefixJob/%Y/%M/%D/%H/
+pmx subshell oozie set dataset upg_prefix_ds_out attribute pathType hdfs
+pmx subshell oozie set dataset upg_prefix_ds_out attribute startOffset 1
+pmx subshell oozie set dataset upg_prefix_ds_out attribute frequency 60
+pmx subshell oozie set dataset upg_prefix_ds_out attribute frequencyUnit minute
+pmx subshell oozie set dataset upg_prefix_ds_out attribute endOffset 1
+pmx subshell oozie set dataset upg_prefix_ds_out attribute outputOffset 1
+pmx subshell oozie set dataset upg_prefix_ds_out attribute doneFile _DONE
+pmx subshell oozie set dataset upg_prefix_ds_out attribute startTime 2012-01-03T00:00Z
+pmx subshell oozie add job upgrade_prefix_job BizreflexPrefixJob /opt/etc/oozie/BizreflexPrefixCubes
+pmx subshell oozie set job upgrade_prefix_job attribute jobStart 2012-11-02T20:00Z
+pmx subshell oozie set job upgrade_prefix_job attribute jobFrequency 60
+pmx subshell oozie set job upgrade_prefix_job attribute jobEnd 2033-11-07T11:00Z
+pmx subshell oozie set job upgrade_prefix_job attribute frequencyUnit minute
+pmx subshell oozie set job upgrade_prefix_job action ExecutePrefixJob attribute jarFile /opt/tms/java/CubeCreator-upgrade.jar
+pmx subshell oozie set job upgrade_prefix_job action ExecutePrefixJob attribute mainClass com.guavus.mapred.reflex.bizreflex.job.PrefixAsJob.PrefixAsCubes
+pmx subshell oozie set job upgrade_prefix_job action ExecutePrefixJob attribute configFile /data/IBS/config_bizrules_upgrade.xml
+pmx subshell oozie set job upgrade_prefix_job action ExecutePrefixJob attribute outputDataset upg_prefix_ds_out
+wr me
+

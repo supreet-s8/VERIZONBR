@@ -1,0 +1,74 @@
+
+
+en
+conf t
+pmx subshell oozie add dataset upg_bizr_ds_in
+pmx subshell oozie set dataset upg_bizr_ds_in attribute startOffset 1
+pmx subshell oozie set dataset upg_bizr_ds_in attribute frequency 60
+pmx subshell oozie set dataset upg_bizr_ds_in attribute endOffset 1
+pmx subshell oozie set dataset upg_bizr_ds_in attribute doneFile _SUCCESS
+pmx subshell oozie set dataset upg_bizr_ds_in attribute outputOffset 1
+pmx subshell oozie set dataset upg_bizr_ds_in attribute path /data/BR_OUT/MasterJob/%Y/%M/%D/%H/
+pmx subshell oozie set dataset upg_bizr_ds_in attribute startTime 2012-03-29T00:00Z
+pmx subshell oozie set dataset upg_bizr_ds_in attribute pathType hdfs
+pmx subshell oozie set dataset upg_bizr_ds_in attribute frequencyUnit minute
+pmx subshell oozie add dataset upg_bizr_ds_out
+pmx subshell oozie set dataset upg_bizr_ds_out attribute startOffset 1
+pmx subshell oozie set dataset upg_bizr_ds_out attribute frequency 60
+pmx subshell oozie set dataset upg_bizr_ds_out attribute endOffset 1
+pmx subshell oozie set dataset upg_bizr_ds_out attribute outputOffset 1
+pmx subshell oozie set dataset upg_bizr_ds_out attribute doneFile _DONE
+pmx subshell oozie set dataset upg_bizr_ds_out attribute path /data/BR_OUT/BizRulesJob/%Y/%M/%D/%H/
+pmx subshell oozie set dataset upg_bizr_ds_out attribute pathType hdfs
+pmx subshell oozie set dataset upg_bizr_ds_out attribute frequencyUnit minute
+pmx subshell oozie set dataset upg_bizr_ds_out attribute startTime 2012-03-29T00:00Z
+pmx subshell oozie add dataset upg_topAs_ds_out
+pmx subshell oozie set dataset upg_topAs_ds_out attribute startOffset 1
+pmx subshell oozie set dataset upg_topAs_ds_out attribute frequency 60
+pmx subshell oozie set dataset upg_topAs_ds_out attribute endOffset 1
+pmx subshell oozie set dataset upg_topAs_ds_out attribute outputOffset 1
+pmx subshell oozie set dataset upg_topAs_ds_out attribute doneFile _DONE
+pmx subshell oozie set dataset upg_topAs_ds_out attribute path /data/BR_OUT/TopAsJob/%Y/%M/%D/%H/
+pmx subshell oozie set dataset upg_topAs_ds_out attribute pathType hdfs
+pmx subshell oozie set dataset upg_topAs_ds_out attribute frequencyUnit minute
+pmx subshell oozie set dataset upg_topAs_ds_out attribute startTime 2012-03-29T00:00Z
+pmx subshell oozie add dataset upg_topInt_ds_out
+pmx subshell oozie set dataset upg_topInt_ds_out attribute startOffset 1
+pmx subshell oozie set dataset upg_topInt_ds_out attribute frequency 60
+pmx subshell oozie set dataset upg_topInt_ds_out attribute endOffset 1
+pmx subshell oozie set dataset upg_topInt_ds_out attribute outputOffset 1
+pmx subshell oozie set dataset upg_topInt_ds_out attribute doneFile _DONE
+pmx subshell oozie set dataset upg_topInt_ds_out attribute path /data/BR_OUT/TopIntJob/%Y/%M/%D/%H/
+pmx subshell oozie set dataset upg_topInt_ds_out attribute pathType hdfs
+pmx subshell oozie set dataset upg_topInt_ds_out attribute frequencyUnit minute
+pmx subshell oozie set dataset upg_topInt_ds_out attribute startTime 2012-03-29T00:00Z
+pmx subshell oozie add job bizrules_upgrade BizRulesJob /opt/etc/oozie/Reflex/BizRulesCubes
+pmx subshell oozie set job bizrules_upgrade attribute jobStart 2014-03-25T01:00Z
+pmx subshell oozie set job bizrules_upgrade attribute jobFrequency 60
+pmx subshell oozie set job bizrules_upgrade attribute jobEnd 2014-04-01T01:00Z
+pmx subshell oozie set job bizrules_upgrade attribute frequencyUnit minute
+pmx subshell oozie set job bizrules_upgrade action BizRulesAction  attribute jarFile /opt/tms/java/CubeCreator-upgrade.jar
+pmx subshell oozie set job bizrules_upgrade action BizRulesAction  attribute mainClass com.guavus.mapred.reflex.bizreflex.job.BizRulesJob.BizRulesJobCubes
+pmx subshell oozie set job bizrules_upgrade action BizRulesAction  attribute configFile /data/IBS/config_bizrules_upgrade.xml
+pmx subshell oozie set job bizrules_upgrade action BizRulesAction  attribute instaHost 108.55.163.93 
+pmx subshell oozie set job bizrules_upgrade action BizRulesAction  attribute instaPort 11111
+pmx subshell oozie set job bizrules_upgrade action BizRulesAction  attribute postgresSqlHost 108.55.163.93
+pmx subshell oozie set job bizrules_upgrade action BizRulesAction  attribute postgresSqlPort 5432
+pmx subshell oozie set job bizrules_upgrade action BizRulesAction  attribute postgresSql_DBname rubixdb
+pmx subshell oozie set job bizrules_upgrade action BizRulesAction  attribute postgresSql_tableSuffix _vzb_unknown_cluster
+pmx subshell oozie set job bizrules_upgrade action BizRulesAction  attribute inputDatasets upg_bizr_ds_in
+pmx subshell oozie set job bizrules_upgrade action BizRulesAction  attribute outputDataset upg_bizr_ds_out
+pmx subshell oozie set job bizrules_upgrade action BizRulesAction  attribute snapshotDatasets upg_bizr_ds_out
+pmx subshell oozie set job bizrules_upgrade action TopASPathAction attribute jarFile /opt/tms/java/CubeCreator-upgrade.jar
+pmx subshell oozie set job bizrules_upgrade action TopASPathAction attribute mainClass com.guavus.mapred.reflex.bizreflex.job.TopASPath.TopASPath
+pmx subshell oozie set job bizrules_upgrade action TopASPathAction attribute configFile /data/IBS/config_bizrules_upgrade.xml
+pmx subshell oozie set job bizrules_upgrade action TopASPathAction attribute inputDatasets upg_bizr_ds_out
+pmx subshell oozie set job bizrules_upgrade action TopASPathAction attribute outputDataset upg_topAs_ds_out
+pmx subshell oozie set job bizrules_upgrade action TopASPathAction attribute snapshotDatasets upg_topAs_ds_out
+pmx subshell oozie set job bizrules_upgrade action TopInteractionAction attribute jarFile /opt/tms/java/CubeCreator-upgrade.jar
+pmx subshell oozie set job bizrules_upgrade action TopInteractionAction attribute mainClass com.guavus.mapred.reflex.bizreflex.job.TopInteractions.TopInteraction
+pmx subshell oozie set job bizrules_upgrade action TopInteractionAction attribute inputDatasets upg_bizr_ds_out
+pmx subshell oozie set job bizrules_upgrade action TopInteractionAction attribute configFile /data/IBS/config_bizrules_upgrade.xml
+pmx subshell oozie set job bizrules_upgrade action TopInteractionAction attribute outputDataset upg_topInt_ds_out
+pmx subshell oozie set job bizrules_upgrade action TopInteractionAction attribute snapshotDatasets upg_topInt_ds_out
+wr mem

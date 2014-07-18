@@ -1,0 +1,33 @@
+
+
+en
+conf t
+pmx subshell oozie add dataset ds_whiteAs_in
+pmx subshell oozie set dataset ds_whiteAs_in attribute startOffset 7
+pmx subshell oozie set dataset ds_whiteAs_in attribute frequency 1
+pmx subshell oozie set dataset ds_whiteAs_in attribute endOffset 1
+pmx subshell oozie set dataset ds_whiteAs_in attribute outputOffset 0
+pmx subshell oozie set dataset ds_whiteAs_in attribute path /data/BR_OUT/PotentialAsJob/%Y/%M/%D/
+pmx subshell oozie set dataset ds_whiteAs_in attribute pathType hdfs
+pmx subshell oozie set dataset ds_whiteAs_in attribute frequencyUnit day
+pmx subshell oozie set dataset ds_whiteAs_in attribute startTime 2012-09-13T00:00Z
+pmx subshell oozie add dataset ds_whiteAs_out
+pmx subshell oozie set dataset ds_whiteAs_out attribute startOffset 1
+pmx subshell oozie set dataset ds_whiteAs_out attribute frequency 7
+pmx subshell oozie set dataset ds_whiteAs_out attribute endOffset 1
+pmx subshell oozie set dataset ds_whiteAs_out attribute outputOffset 1
+pmx subshell oozie set dataset ds_whiteAs_out attribute path /data/BR_OUT/WhiteAsList/%Y/%M/%D/
+pmx subshell oozie set dataset ds_whiteAs_out attribute pathType hdfs
+pmx subshell oozie set dataset ds_whiteAs_out attribute frequencyUnit day
+pmx subshell oozie set dataset ds_whiteAs_out attribute startTime 2012-09-13T00:00Z
+pmx subshell oozie add job ExecWhiteListJob AsWhiteListJob /opt/etc/oozie/AsWhiteList
+pmx subshell oozie set job ExecWhiteListJob attribute jobFrequency 7
+pmx subshell oozie set job ExecWhiteListJob attribute jobStart 2012-09-20T00:40Z
+pmx subshell oozie set job ExecWhiteListJob attribute jobEnd 2012-12-11T00:40Z
+pmx subshell oozie set job ExecWhiteListJob attribute frequencyUnit day
+pmx subshell oozie set job ExecWhiteListJob action ExecuteAsWhiteListJob attribute inputDatasets ds_whiteAs_in
+pmx subshell oozie set job ExecWhiteListJob action ExecuteAsWhiteListJob attribute jarFile /opt/tms/java/CubeCreator.jar
+pmx subshell oozie set job ExecWhiteListJob action ExecuteAsWhiteListJob attribute mainClass com.guavus.mapred.reflex.bizreflex.job.AsWhiteListJob.AsWhiteList
+pmx subshell oozie set job ExecWhiteListJob action ExecuteAsWhiteListJob attribute configFile /data/IBS/config_aslist.xml
+pmx subshell oozie set job ExecWhiteListJob action ExecuteAsWhiteListJob attribute outputDataset ds_whiteAs_out
+wr mem

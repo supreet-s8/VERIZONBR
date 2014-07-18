@@ -1,0 +1,136 @@
+
+en
+conf t
+pmx subshell oozie add dataset master_mr
+pmx subshell oozie set dataset master_mr attribute frequency 1
+pmx subshell oozie set dataset master_mr attribute frequencyUnit day
+pmx subshell oozie set dataset master_mr attribute pathType hdfs
+pmx subshell oozie set dataset master_mr attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie set dataset master_mr attribute path /data/BR_OUT/MasterJob/%Y/%M/%D/
+pmx subshell oozie set dataset master_mr attribute startOffset 0
+pmx subshell oozie set dataset master_mr attribute endOffset 1
+pmx subshell oozie add dataset prefix_mr
+pmx subshell oozie set dataset prefix_mr attribute frequency 1
+pmx subshell oozie set dataset prefix_mr attribute frequencyUnit day
+pmx subshell oozie set dataset prefix_mr attribute pathType hdfs
+pmx subshell oozie set dataset prefix_mr attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie set dataset prefix_mr attribute path /data/BR_OUT/PrefixJob/%Y/%M/%D/
+pmx subshell oozie set dataset prefix_mr attribute startOffset 0
+pmx subshell oozie set dataset prefix_mr attribute endOffset 1
+pmx subshell oozie add dataset bizrules_mr
+pmx subshell oozie set dataset bizrules_mr attribute frequency 1
+pmx subshell oozie set dataset bizrules_mr attribute frequencyUnit day
+pmx subshell oozie set dataset bizrules_mr attribute pathType hdfs
+pmx subshell oozie set dataset bizrules_mr attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie set dataset bizrules_mr attribute path /data/BR_OUT/BizRulesJob/%Y/%M/%D/
+pmx subshell oozie set dataset bizrules_mr attribute startOffset 0
+pmx subshell oozie set dataset bizrules_mr attribute endOffset 1
+pmx subshell oozie add dataset topint_mr
+pmx subshell oozie set dataset topint_mr attribute frequency 1
+pmx subshell oozie set dataset topint_mr attribute frequencyUnit day
+pmx subshell oozie set dataset topint_mr attribute pathType hdfs
+pmx subshell oozie set dataset topint_mr attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie set dataset topint_mr attribute path /data/BR_OUT/TopIntJob/%Y/%M/%D/
+pmx subshell oozie set dataset topint_mr attribute startOffset 0
+pmx subshell oozie set dataset topint_mr attribute endOffset 1
+pmx subshell oozie add dataset topas_mr
+pmx subshell oozie set dataset topas_mr attribute frequency 1
+pmx subshell oozie set dataset topas_mr attribute frequencyUnit day
+pmx subshell oozie set dataset topas_mr attribute pathType hdfs
+pmx subshell oozie set dataset topas_mr attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie set dataset topas_mr attribute path /data/BR_OUT/TopAsJob/%Y/%M/%D/
+pmx subshell oozie set dataset topas_mr attribute startOffset 0
+pmx subshell oozie set dataset topas_mr attribute endOffset 1
+pmx subshell oozie add dataset bizrules1d_mr
+pmx subshell oozie set dataset bizrules1d_mr attribute frequency 1
+pmx subshell oozie set dataset bizrules1d_mr attribute frequencyUnit day
+pmx subshell oozie set dataset bizrules1d_mr attribute pathType hdfs
+pmx subshell oozie set dataset bizrules1d_mr attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie set dataset bizrules1d_mr attribute path /data/BR_OUT/BizRulesAgg_1d/%Y/%M/%D/
+pmx subshell oozie set dataset bizrules1d_mr attribute startOffset 0
+pmx subshell oozie set dataset bizrules1d_mr attribute endOffset 1
+pmx subshell oozie add dataset bizrules1w_mr
+pmx subshell oozie set dataset bizrules1w_mr attribute frequency 1
+pmx subshell oozie set dataset bizrules1w_mr attribute frequencyUnit day
+pmx subshell oozie set dataset bizrules1w_mr attribute pathType hdfs
+pmx subshell oozie set dataset bizrules1w_mr attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie set dataset bizrules1w_mr attribute path /data/BR_OUT/BizRulesAgg_1w/%Y/%M/%D/
+pmx subshell oozie set dataset bizrules1w_mr attribute startOffset 0
+pmx subshell oozie set dataset bizrules1w_mr attribute endOffset 1
+pmx subshell oozie add dataset bizrules1m_mr
+pmx subshell oozie set dataset bizrules1m_mr attribute frequency 1
+pmx subshell oozie set dataset bizrules1m_mr attribute frequencyUnit day
+pmx subshell oozie set dataset bizrules1m_mr attribute pathType hdfs
+pmx subshell oozie set dataset bizrules1m_mr attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie set dataset bizrules1m_mr attribute path /data/BR_OUT/BizRulesAgg_Month/%Y/%M/%D/
+pmx subshell oozie set dataset bizrules1m_mr attribute startOffset 0
+pmx subshell oozie set dataset bizrules1m_mr attribute endOffset 1
+pmx subshell oozie add dataset topint1d_mr
+pmx subshell oozie set dataset topint1d_mr attribute frequency 1
+pmx subshell oozie set dataset topint1d_mr attribute frequencyUnit day
+pmx subshell oozie set dataset topint1d_mr attribute pathType hdfs
+pmx subshell oozie set dataset topint1d_mr attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie set dataset topint1d_mr attribute path /data/BR_OUT/TopIntAgg_1d/%Y/%M/%D/
+pmx subshell oozie set dataset topint1d_mr attribute startOffset 0
+pmx subshell oozie set dataset topint1d_mr attribute endOffset 1
+pmx subshell oozie add dataset topint1w_mr
+pmx subshell oozie set dataset topint1w_mr attribute frequency 1
+pmx subshell oozie set dataset topint1w_mr attribute frequencyUnit day
+pmx subshell oozie set dataset topint1w_mr attribute pathType hdfs
+pmx subshell oozie set dataset topint1w_mr attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie set dataset topint1w_mr attribute path /data/BR_OUT/TopIntAgg_1w/%Y/%M/%D/
+pmx subshell oozie set dataset topint1w_mr attribute startOffset 0
+pmx subshell oozie set dataset topint1w_mr attribute endOffset 1
+pmx subshell oozie add dataset topint1m_mr
+pmx subshell oozie set dataset topint1m_mr attribute frequency 1
+pmx subshell oozie set dataset topint1m_mr attribute frequencyUnit day
+pmx subshell oozie set dataset topint1m_mr attribute pathType hdfs
+pmx subshell oozie set dataset topint1m_mr attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie set dataset topint1m_mr attribute path /data/BR_OUT/TopIntAgg_Month/%Y/%M/%D/
+pmx subshell oozie set dataset topint1m_mr attribute startOffset 0
+pmx subshell oozie set dataset topint1m_mr attribute endOffset 1
+pmx subshell oozie add dataset topas1d_mr
+pmx subshell oozie set dataset topas1d_mr attribute frequency 1
+pmx subshell oozie set dataset topas1d_mr attribute frequencyUnit day
+pmx subshell oozie set dataset topas1d_mr attribute pathType hdfs
+pmx subshell oozie set dataset topas1d_mr attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie set dataset topas1d_mr attribute path /data/BR_OUT/TopAsAgg_1d/%Y/%M/%D/
+pmx subshell oozie set dataset topas1d_mr attribute startOffset 0
+pmx subshell oozie set dataset topas1d_mr attribute endOffset 1
+pmx subshell oozie add dataset topas1w_mr
+pmx subshell oozie set dataset topas1w_mr attribute frequency 1
+pmx subshell oozie set dataset topas1w_mr attribute frequencyUnit day
+pmx subshell oozie set dataset topas1w_mr attribute pathType hdfs
+pmx subshell oozie set dataset topas1w_mr attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie set dataset topas1w_mr attribute path /data/BR_OUT/TopAsAgg_1w/%Y/%M/%D/
+pmx subshell oozie set dataset topas1w_mr attribute startOffset 0
+pmx subshell oozie set dataset topas1w_mr attribute endOffset 1
+pmx subshell oozie add dataset topas1m_mr
+pmx subshell oozie set dataset topas1m_mr attribute frequency 1
+pmx subshell oozie set dataset topas1m_mr attribute frequencyUnit day
+pmx subshell oozie set dataset topas1m_mr attribute pathType hdfs
+pmx subshell oozie set dataset topas1m_mr attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie set dataset topas1m_mr attribute path /data/BR_OUT/TopAsAgg_Month/%Y/%M/%D/
+pmx subshell oozie set dataset topas1m_mr attribute startOffset 0
+pmx subshell oozie set dataset topas1m_mr attribute endOffset 1
+pmx subshell oozie add job slamr SLA_DataCleanUp /opt/etc/oozie/Reflex/SLA_DataCleanUp
+pmx subshell oozie set job slamr attribute jobFrequency 1
+pmx subshell oozie set job slamr attribute frequencyUnit day
+pmx subshell oozie set job slamr attribute jobStart 2013-04-15T02:00Z
+pmx subshell oozie set job slamr attribute jobEnd 2020-04-15T02:00Z
+pmx subshell oozie set job slamr action SLA_DataCleanUpAction attribute cleanupOffset 65
+pmx subshell oozie set job slamr action SLA_DataCleanUpAction attribute cleanupDatasets master_mr
+pmx subshell oozie set job slamr action SLA_DataCleanUpAction attribute cleanupDatasets prefix_mr
+pmx subshell oozie set job slamr action SLA_DataCleanUpAction attribute cleanupDatasets bizrules_mr
+pmx subshell oozie set job slamr action SLA_DataCleanUpAction attribute cleanupDatasets topint_mr
+pmx subshell oozie set job slamr action SLA_DataCleanUpAction attribute cleanupDatasets topas_mr
+pmx subshell oozie set job slamr action SLA_DataCleanUpAction attribute cleanupDatasets bizrules1d_mr
+pmx subshell oozie set job slamr action SLA_DataCleanUpAction attribute cleanupDatasets topint1d_mr
+pmx subshell oozie set job slamr action SLA_DataCleanUpAction attribute cleanupDatasets topas1d_mr
+pmx subshell oozie set job slamr action SLA_DataCleanUpAction attribute cleanupDatasets bizrules1w_mr
+pmx subshell oozie set job slamr action SLA_DataCleanUpAction attribute cleanupDatasets topint1w_mr
+pmx subshell oozie set job slamr action SLA_DataCleanUpAction attribute cleanupDatasets topas1w_mr
+pmx subshell oozie set job slamr action SLA_DataCleanUpAction attribute cleanupDatasets bizrules1m_mr
+pmx subshell oozie set job slamr action SLA_DataCleanUpAction attribute cleanupDatasets topas1m_mr
+pmx subshell oozie set job slamr action SLA_DataCleanUpAction attribute cleanupDatasets topint1m_mr
+wr me

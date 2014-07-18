@@ -1,0 +1,34 @@
+
+
+en
+conf t
+pmx subshell oozie add dataset ds_unrolled_in
+pmx subshell oozie set dataset ds_unrolled_in attribute startOffset 24
+pmx subshell oozie set dataset ds_unrolled_in attribute frequency 60
+pmx subshell oozie set dataset ds_unrolled_in attribute endOffset 1
+pmx subshell oozie set dataset ds_unrolled_in attribute outputOffset 0
+pmx subshell oozie set dataset ds_unrolled_in attribute path /data/BR_OUT/MasterJob/%Y/%M/%D/%H/X.MAPREDUCE.0.1
+pmx subshell oozie set dataset ds_unrolled_in attribute startTime 2012-09-25T00:00Z
+pmx subshell oozie set dataset ds_unrolled_in attribute pathType hdfs
+pmx subshell oozie set dataset ds_unrolled_in attribute frequencyUnit minute
+pmx subshell oozie add dataset ds_unrolled_out
+pmx subshell oozie set dataset ds_unrolled_out attribute startOffset 1
+pmx subshell oozie set dataset ds_unrolled_out attribute frequency 1440
+pmx subshell oozie set dataset ds_unrolled_out attribute endOffset 1
+pmx subshell oozie set dataset ds_unrolled_out attribute outputOffset 1
+pmx subshell oozie set dataset ds_unrolled_out attribute path /data/BR_OUT/UnRolledAggJob/%Y/%M/%D/
+pmx subshell oozie set dataset ds_unrolled_out attribute pathType hdfs
+pmx subshell oozie set dataset ds_unrolled_out attribute frequencyUnit minute
+pmx subshell oozie set dataset ds_unrolled_out attribute startTime 2012-09-25T00:00Z
+pmx subshell oozie add job unrolledAsJob MapRedJob /opt/etc/oozie/MapRed
+pmx subshell oozie set job unrolledAsJob attribute jobStart 2012-09-26T00:30Z
+pmx subshell oozie set job unrolledAsJob attribute jobFrequency 1440
+pmx subshell oozie set job unrolledAsJob attribute jobEnd 2013-08-29T00:30Z
+pmx subshell oozie set job unrolledAsJob attribute frequencyUnit minute
+pmx subshell oozie set job unrolledAsJob action MapRedAction  attribute jarFile /opt/tms/java/CubeCreator.jar
+pmx subshell oozie set job unrolledAsJob action MapRedAction  attribute mainClass com.guavus.mapred.reflex.bizreflex.job.AggregateJob.BizreflexAgg
+pmx subshell oozie set job unrolledAsJob action MapRedAction  attribute configFile /data/IBS/config_aslist.xml
+pmx subshell oozie set job unrolledAsJob action MapRedAction  attribute inputDatasets ds_unrolled_in
+pmx subshell oozie set job unrolledAsJob action MapRedAction  attribute outputDataset ds_unrolled_out
+pmx subshell oozie set job unrolledAsJob action MapRedAction  attribute snapshotDatasets ds_unrolled_out
+wr mem

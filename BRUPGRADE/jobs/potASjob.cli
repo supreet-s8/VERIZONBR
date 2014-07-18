@@ -1,0 +1,34 @@
+
+
+en
+conf t
+pmx subshell oozie add dataset ds_potAs_in
+pmx subshell oozie set dataset ds_potAs_in attribute startOffset 1
+pmx subshell oozie set dataset ds_potAs_in attribute frequency 1
+pmx subshell oozie set dataset ds_potAs_in attribute endOffset 1
+pmx subshell oozie set dataset ds_potAs_in attribute outputOffset 0
+pmx subshell oozie set dataset ds_potAs_in attribute path /data/BR_OUT/UnRolledAggJob/%Y/%M/%D/
+pmx subshell oozie set dataset ds_potAs_in attribute startTime 2012-09-24T00:00Z
+pmx subshell oozie set dataset ds_potAs_in attribute pathType hdfs
+pmx subshell oozie set dataset ds_potAs_in attribute frequencyUnit day
+pmx subshell oozie add dataset ds_potAs_out
+pmx subshell oozie set dataset ds_potAs_out attribute startOffset 1
+pmx subshell oozie set dataset ds_potAs_out attribute frequency 1
+pmx subshell oozie set dataset ds_potAs_out attribute endOffset 1
+pmx subshell oozie set dataset ds_potAs_out attribute outputOffset 1
+pmx subshell oozie set dataset ds_potAs_out attribute path /data/BR_OUT/PotentialAsJob/%Y/%M/%D/
+pmx subshell oozie set dataset ds_potAs_out attribute pathType hdfs
+pmx subshell oozie set dataset ds_potAs_out attribute frequencyUnit day
+pmx subshell oozie set dataset ds_potAs_out attribute startTime 2012-09-24T00:00Z
+pmx subshell oozie add job PotAsJob MapRedJob /opt/etc/oozie/MapRed
+pmx subshell oozie set job PotAsJob attribute jobFrequency 1
+pmx subshell oozie set job PotAsJob attribute jobStart 2012-09-25T00:45Z
+pmx subshell oozie set job PotAsJob attribute jobEnd 2013-09-03T03:00Z
+pmx subshell oozie set job PotAsJob attribute frequencyUnit day
+pmx subshell oozie set job PotAsJob action MapRedAction attribute inputDatasets ds_potAs_in
+pmx subshell oozie set job PotAsJob action MapRedAction attribute jarFile /opt/tms/java/CubeCreator.jar
+pmx subshell oozie set job PotAsJob action MapRedAction attribute mainClass com.guavus.mapred.reflex.bizreflex.job.PotentialAsJob.PotentialAs
+pmx subshell oozie set job PotAsJob action MapRedAction attribute configFile /data/IBS/config_aslist.xml
+pmx subshell oozie set job PotAsJob action MapRedAction attribute outputDataset ds_potAs_out
+pmx subshell oozie set job PotAsJob action MapRedAction attribute snapshotDatasets ds_potAs_out
+wr mem

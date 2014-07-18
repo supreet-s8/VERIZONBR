@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<re xmlns="http://www.guavus.com"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="config.xsd">
+
+    <period>10800</period>
+    <log_level>error</log_level>
+
+    <output_target>hdfs</output_target>
+    <service>
+	<name>ip</name>
+        <doneFlag>
+                <name>mplsDone</name> <directory>/tmp/b7</directory>
+        </doneFlag>
+        <subservice>
+        	<name>bgp</name>
+        	<input>
+            	<method>static</method>
+		<file>
+                <regex>bview.([0-9]*)</regex>
+                <format>bview</format>
+                <directory>/data/routing/bgp/tables/</directory>
+                </file>
+        	</input>
+        	<doneFlag><name>eib.done</name><directory>/tmp/b6</directory></doneFlag>
+        <params>
+            <eib>
+                <name>eib</name>
+                <directory>/data/routing/eib/</directory>
+            </eib>
+            <asib>
+                <name>asib</name>
+                <directory>/data/routing/asib/</directory>
+            </asib>
+            <mergedEibAsib>
+                <name>mergedEibAsib</name>
+                <directory>/data/routing/merged_asib/</directory>
+            </mergedEibAsib>
+	    <external_egress_marker>external</external_egress_marker>
+            <local_as>701</local_as>
+	    <wait_for_file_write>2</wait_for_file_write>
+            <eib_buffer_size>20000</eib_buffer_size>
+	     <appPrefixes>
+                <name>app_prefixlist.txt</name>
+                <directory>/data/configs/re_configs/</directory>
+           </appPrefixes>	
+        </params>
+	</subservice>
+<subservice>
+        <name>generic</name>
+        <params>
+            <rib>
+                <name>pop</name>
+                <directory>/data/routing/pop</directory>
+            </rib>
+        </params>
+    </subservice>
+	<system_config>
+        	<name>system.xml</name>
+        	<directory>/data/configs/re_configs</directory>
+    	</system_config>	
+    </service>
+   <cpu>2</cpu>
+    <name2id>
+  	<from>insta</from> 
+	<service>
+                <name>all</name>
+                <port>11111</port>
+                <ip>108.55.163.93</ip>
+        </service>
+    </name2id>
+
+    <unresolved><name>unresolved.txt</name><directory>/data/configs/re_configs/</directory></unresolved>
+</re>

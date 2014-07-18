@@ -1,0 +1,19 @@
+
+en
+conf t
+pmx subshell oozie add dataset netflow
+pmx subshell oozie set dataset netflow attribute frequency 1
+pmx subshell oozie set dataset netflow attribute frequencyUnit day
+pmx subshell oozie set dataset netflow attribute pathType hdfs
+pmx subshell oozie set dataset netflow attribute startTime 2013-04-01T00:00Z
+pmx subshell oozie set dataset netflow attribute path /data/netflow/%Y/%M/%D/
+pmx subshell oozie set dataset netflow attribute startOffset 0
+pmx subshell oozie set dataset netflow attribute endOffset 1
+pmx subshell oozie add job sla2 SLA_DataCleanUp /opt/etc/oozie/Reflex/SLA_DataCleanUp
+pmx subshell oozie set job sla2 attribute jobFrequency 1
+pmx subshell oozie set job sla2 attribute frequencyUnit day
+pmx subshell oozie set job sla2 attribute jobStart 2013-04-15T02:00Z
+pmx subshell oozie set job sla2 attribute jobEnd 2020-04-15T02:00Z
+pmx subshell oozie set job sla2 action SLA_DataCleanUpAction attribute cleanupOffset 15
+pmx subshell oozie set job sla2 action SLA_DataCleanUpAction attribute cleanupDatasets netflow
+wr me

@@ -1,0 +1,69 @@
+
+
+en
+conf t
+pmx subshell oozie add dataset bizrl_agg1m_in
+pmx subshell oozie set dataset bizrl_agg1m_in attribute startOffset 1
+pmx subshell oozie set dataset bizrl_agg1m_in attribute frequency 1
+pmx subshell oozie set dataset bizrl_agg1m_in attribute endOffset 1
+pmx subshell oozie set dataset bizrl_agg1m_in attribute doneFile _DONE
+pmx subshell oozie set dataset bizrl_agg1m_in attribute outputOffset 1
+pmx subshell oozie set dataset bizrl_agg1m_in attribute path /data/BR_OUT/BizRulesAgg_1d/%Y/%M/%D/%H/
+pmx subshell oozie set dataset bizrl_agg1m_in attribute startTime 2012-12-29T00:00Z
+pmx subshell oozie set dataset bizrl_agg1m_in attribute pathType hdfs
+pmx subshell oozie set dataset bizrl_agg1m_in attribute frequencyUnit day
+pmx subshell oozie add dataset bizrl_agg1m_out
+pmx subshell oozie set dataset bizrl_agg1m_out attribute startOffset 1
+pmx subshell oozie set dataset bizrl_agg1m_out attribute frequency 1
+pmx subshell oozie set dataset bizrl_agg1m_out attribute endOffset 1
+pmx subshell oozie set dataset bizrl_agg1m_out attribute outputOffset 1
+pmx subshell oozie set dataset bizrl_agg1m_out attribute doneFile _DONE
+pmx subshell oozie set dataset bizrl_agg1m_out attribute path /data/BR_OUT/BizRulesAgg_Month/%Y/%M/%D/
+pmx subshell oozie set dataset bizrl_agg1m_out attribute pathType hdfs
+pmx subshell oozie set dataset bizrl_agg1m_out attribute frequencyUnit month
+pmx subshell oozie set dataset bizrl_agg1m_out attribute startTime 2012-12-29T00:00Z
+pmx subshell oozie add dataset topAs_agg1m_out
+pmx subshell oozie set dataset topAs_agg1m_out attribute startOffset 1
+pmx subshell oozie set dataset topAs_agg1m_out attribute frequency 1
+pmx subshell oozie set dataset topAs_agg1m_out attribute endOffset 1
+pmx subshell oozie set dataset topAs_agg1m_out attribute outputOffset 1
+pmx subshell oozie set dataset topAs_agg1m_out attribute doneFile _DONE
+pmx subshell oozie set dataset topAs_agg1m_out attribute path /data/BR_OUT/TopAsAgg_Month/%Y/%M/%D/
+pmx subshell oozie set dataset topAs_agg1m_out attribute pathType hdfs
+pmx subshell oozie set dataset topAs_agg1m_out attribute frequencyUnit month
+pmx subshell oozie set dataset topAs_agg1m_out attribute startTime 2012-12-29T00:00Z
+pmx subshell oozie add dataset topInt_agg1m_out
+pmx subshell oozie set dataset topInt_agg1m_out attribute startOffset 1
+pmx subshell oozie set dataset topInt_agg1m_out attribute frequency 1
+pmx subshell oozie set dataset topInt_agg1m_out attribute endOffset 1
+pmx subshell oozie set dataset topInt_agg1m_out attribute outputOffset 1
+pmx subshell oozie set dataset topInt_agg1m_out attribute doneFile _DONE
+pmx subshell oozie set dataset topInt_agg1m_out attribute path /data/BR_OUT/TopIntAgg_Month/%Y/%M/%D/
+pmx subshell oozie set dataset topInt_agg1m_out attribute pathType hdfs
+pmx subshell oozie set dataset topInt_agg1m_out attribute frequencyUnit month
+pmx subshell oozie set dataset topInt_agg1m_out attribute startTime 2012-12-29T00:00Z
+pmx subshell oozie add job aggregate_1m BizAggregatedJob /opt/etc/oozie/Reflex/BizAggregatedJob
+pmx subshell oozie set job aggregate_1m attribute jobStart 2013-08-01T05:00Z
+pmx subshell oozie set job aggregate_1m attribute jobFrequency 1
+pmx subshell oozie set job aggregate_1m attribute jobEnd 2033-09-01T05:00Z
+pmx subshell oozie set job aggregate_1m attribute frequencyUnit month
+pmx subshell oozie set job aggregate_1m attribute timezone US/Eastern
+pmx subshell oozie set job aggregate_1m action ExecuteAggregatedBizJob  attribute jarFile /opt/tms/java/CubeCreator.jar
+pmx subshell oozie set job aggregate_1m action ExecuteAggregatedBizJob  attribute mainClass com.guavus.mapred.reflex.bizreflex.job.AggregatedBizJob.BizAggregatedJob
+pmx subshell oozie set job aggregate_1m action ExecuteAggregatedBizJob  attribute configFile /data/IBS/config_agg1M.xml
+pmx subshell oozie set job aggregate_1m action ExecuteAggregatedBizJob  attribute inputDatasets bizrl_agg1m_in
+pmx subshell oozie set job aggregate_1m action ExecuteAggregatedBizJob  attribute outputDataset bizrl_agg1m_out
+pmx subshell oozie set job aggregate_1m action ExecuteAggregatedBizJob  attribute snapshotDatasets bizrl_agg1m_out
+pmx subshell oozie set job aggregate_1m action TopASPathAction attribute jarFile /opt/tms/java/CubeCreator.jar
+pmx subshell oozie set job aggregate_1m action TopASPathAction attribute mainClass com.guavus.mapred.reflex.bizreflex.job.TopASPath.TopASPath
+pmx subshell oozie set job aggregate_1m action TopASPathAction attribute configFile /data/IBS/config_agg1M.xml
+pmx subshell oozie set job aggregate_1m action TopASPathAction attribute inputDatasets bizrl_agg1m_out
+pmx subshell oozie set job aggregate_1m action TopASPathAction attribute outputDataset topAs_agg1m_out
+pmx subshell oozie set job aggregate_1m action TopASPathAction attribute snapshotDatasets topAs_agg1m_out
+pmx subshell oozie set job aggregate_1m action TopInteractionAction attribute jarFile /opt/tms/java/CubeCreator.jar
+pmx subshell oozie set job aggregate_1m action TopInteractionAction attribute mainClass com.guavus.mapred.reflex.bizreflex.job.TopInteractions.TopInteraction
+pmx subshell oozie set job aggregate_1m action TopInteractionAction attribute inputDatasets bizrl_agg1m_out
+pmx subshell oozie set job aggregate_1m action TopInteractionAction attribute configFile /data/IBS/config_agg1M.xml
+pmx subshell oozie set job aggregate_1m action TopInteractionAction attribute outputDataset topInt_agg1m_out
+pmx subshell oozie set job aggregate_1m action TopInteractionAction attribute snapshotDatasets topInt_agg1m_out
+wr mem

@@ -1,0 +1,26 @@
+QUERY                                        TOTAL TIME(RUBIX+INSTA)  INSTA TIME     START TIME            END TIME              MEMORY(G)      EXCEPTIONS
+2013-12-12 00:00:00 to 2013-12-13 00:00:00   00M:07S                  00M:09S        2014-05-12 06:48:15   2014-05-12 06:48:22   0.00           NO
+2013-12-11 00:00:00 to 2013-12-12 00:00:00   00M:07S                  00M:19S        2014-05-12 01:38:16   2014-05-12 01:38:23   0.00           NO
+2013-11-13 00:00:00 to 2013-11-13 21:00:00   11M:13S                  25M:34S        2014-05-02 05:53:16   2014-05-02 06:04:29   0.00           YES
+2013-11-12 00:00:00 to 2013-11-13 00:00:00   02M:13S                  03M:13S        2014-05-02 06:04:29   2014-05-02 06:06:42   0.00           YES
+
+===== SUMMARY =====
+Cache Preload time: 00M:00S (0.002489985 secs)
+
+Data prefetched for: 31 days 
+
+Total Prefetching Time: 10D:55M:06S (867306 secs)
+===============
+
+DETAILED EXCEPTIONS OCCURED
+2013-11-13 00:00:00 to 2013-11-13 21:00:00 --> 2014-05-02 05:54:28.106 [http-bio-8443-exec-9] ERROR c.g.rubix.cache.RubixCache     - Exception when decoding super user info from request parameters
+2014-05-02 05:55:58.040 [http-bio-8443-exec-1] ERROR c.g.rubix.cache.RubixCache     - Exception when decoding super user info from request parameters
+2014-05-02 05:57:28.104 [http-bio-8443-exec-9] ERROR c.g.rubix.cache.RubixCache     - Exception when decoding super user info from request parameters
+2014-05-02 05:58:58.107 [http-bio-8443-exec-2] ERROR c.g.rubix.cache.RubixCache     - Exception when decoding super user info from request parameters
+2014-05-02 06:00:28.119 [http-bio-8443-exec-4] ERROR c.g.rubix.cache.RubixCache     - Exception when decoding super user info from request parameters
+2014-05-02 06:01:58.107 [http-bio-8443-exec-7] ERROR c.g.rubix.cache.RubixCache     - Exception when decoding super user info from request parameters
+2014-05-02 06:03:28.077 [http-bio-8443-exec-10] ERROR c.g.rubix.cache.RubixCache     - Exception when decoding super user info from request parameters
+
+2013-11-12 00:00:00 to 2013-11-13 00:00:00 --> 2014-05-02 06:04:58.101 [http-bio-8443-exec-6] ERROR c.g.rubix.cache.RubixCache     - Exception when decoding super user info from request parameters
+2014-05-02 06:06:28.096 [http-bio-8443-exec-2] ERROR c.g.rubix.cache.RubixCache     - Exception when decoding super user info from request parameters
+

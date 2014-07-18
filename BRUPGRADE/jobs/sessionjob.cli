@@ -1,0 +1,47 @@
+
+
+en
+conf t
+pmx subshell oozie add dataset sla_ds_in
+pmx subshell oozie set dataset sla_ds_in attribute startOffset 1
+pmx subshell oozie set dataset sla_ds_in attribute endOffset 1
+pmx subshell oozie set dataset sla_ds_in attribute outputOffset 0
+pmx subshell oozie set dataset sla_ds_in attribute path /data/sla_logs/downloaded_log/%Y/%M/%D/%H/%mi/sla/
+pmx subshell oozie set dataset sla_ds_in attribute pathType hdfs
+pmx subshell oozie set dataset sla_ds_in attribute startTime 2012-09-06T07:15Z
+pmx subshell oozie set dataset sla_ds_in attribute doneFile _DONE
+pmx subshell oozie set dataset sla_ds_in attribute frequency 5
+pmx subshell oozie set dataset sla_ds_in attribute frequencyUnit minute
+pmx subshell oozie add dataset sla_ds_out
+pmx subshell oozie set dataset sla_ds_out attribute frequency 5
+pmx subshell oozie set dataset sla_ds_out attribute frequencyUnit minute
+pmx subshell oozie set dataset sla_ds_out attribute startOffset 1
+pmx subshell oozie set dataset sla_ds_out attribute endOffset 1
+pmx subshell oozie set dataset sla_ds_out attribute outputOffset 1
+pmx subshell oozie set dataset sla_ds_out attribute path /data/BR_OUT/SessionLogs/%Y/%M/%D/%H/%mi/
+pmx subshell oozie set dataset sla_ds_out attribute pathType hdfs
+pmx subshell oozie set dataset sla_ds_out attribute startTime 2012-09-06T07:15Z
+pmx subshell oozie add job sessionLogsJob UserSessionJob /opt/etc/oozie/UserSession
+pmx subshell oozie set job sessionLogsJob attribute jobStart 2012-09-06T07:20Z
+pmx subshell oozie set job sessionLogsJob attribute jobEnd 2033-09-03T19:55Z
+pmx subshell oozie set job sessionLogsJob attribute jobFrequency 5
+pmx subshell oozie set job sessionLogsJob action ProcessLoginJob attribute configFile /data/IBS/config_userSession.xml
+pmx subshell oozie set job sessionLogsJob action ProcessLoginJob attribute jarFile /opt/tms/java/CubeCreator.jar
+pmx subshell oozie set job sessionLogsJob action ProcessLoginJob attribute mainClass com.guavus.mapred.reflex.bizreflex.job.UserSessionJob.UserSession
+pmx subshell oozie set job sessionLogsJob action ProcessLoginJob attribute inputDatasets sla_ds_in
+pmx subshell oozie set job sessionLogsJob action ProcessLoginJob attribute outputDataset sla_ds_out
+pmx subshell oozie set job sessionLogsJob action ProcessLoginJob attribute timeout 30
+pmx subshell oozie set job sessionLogsJob action ExportData attribute aggregationInterval -1
+pmx subshell oozie set job sessionLogsJob action ExportData attribute binInterval 300
+pmx subshell oozie set job sessionLogsJob action ExportData attribute binClasses SLA_5min
+pmx subshell oozie set job sessionLogsJob action ExportData attribute className com.guavus.exporter.Exporter
+pmx subshell oozie set job sessionLogsJob action ExportData attribute fileType Seq
+pmx subshell oozie set job sessionLogsJob action ExportData attribute instaHost 108.55.163.93 
+pmx subshell oozie set job sessionLogsJob action ExportData attribute instaPort 11111
+pmx subshell oozie set job sessionLogsJob action ExportData attribute jarName /opt/tms/java/CubeCreator.jar
+pmx subshell oozie set job sessionLogsJob action ExportData attribute solutionName reflex.bizreflex
+pmx subshell oozie set job sessionLogsJob action ExportData attribute srcDatasets  sla_ds_out
+pmx subshell oozie set job sessionLogsJob action ExportData attribute maxTimeout 70
+pmx subshell oozie set job sessionLogsJob action ExportData attribute minTimeout 30
+pmx subshell oozie set job sessionLogsJob action ExportData attribute retrySleep 300
+wr mem

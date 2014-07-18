@@ -1,0 +1,50 @@
+
+
+en
+conf t
+pmx subshell oozie add dataset ds_rollup_in
+pmx subshell oozie set dataset ds_rollup_in attribute startOffset 288
+pmx subshell oozie set dataset ds_rollup_in attribute frequency 5
+pmx subshell oozie set dataset ds_rollup_in attribute endOffset 1
+pmx subshell oozie set dataset ds_rollup_in attribute outputOffset 0
+pmx subshell oozie set dataset ds_rollup_in attribute doneFile _DONE
+pmx subshell oozie set dataset ds_rollup_in attribute path /data/netflow/%Y/%M/%D/%H/%mi/
+pmx subshell oozie set dataset ds_rollup_in attribute startTime 2012-09-25T00:00Z
+pmx subshell oozie set dataset ds_rollup_in attribute pathType hdfs
+pmx subshell oozie set dataset ds_rollup_in attribute frequencyUnit minute
+pmx subshell oozie add dataset ds_rollup_out
+pmx subshell oozie set dataset ds_rollup_out attribute startOffset 1
+pmx subshell oozie set dataset ds_rollup_out attribute frequency 1440
+pmx subshell oozie set dataset ds_rollup_out attribute endOffset 1
+pmx subshell oozie set dataset ds_rollup_out attribute outputOffset 1
+pmx subshell oozie set dataset ds_rollup_out attribute path /data/BR_OUT/TempRollUpJob/%Y/%M/%D/
+pmx subshell oozie set dataset ds_rollup_out attribute startTime 2012-09-25T00:00Z
+pmx subshell oozie set dataset ds_rollup_out attribute pathType hdfs
+pmx subshell oozie set dataset ds_rollup_out attribute frequencyUnit minute
+pmx subshell oozie add dataset temp_potAs_out
+pmx subshell oozie set dataset temp_potAs_out attribute startOffset 1
+pmx subshell oozie set dataset temp_potAs_out attribute frequency 1440
+pmx subshell oozie set dataset temp_potAs_out attribute endOffset 1
+pmx subshell oozie set dataset temp_potAs_out attribute outputOffset 1
+pmx subshell oozie set dataset temp_potAs_out attribute path /data/BR_OUT/TempPotAsJob/%Y/%M/%D/
+pmx subshell oozie set dataset temp_potAs_out attribute pathType hdfs
+pmx subshell oozie set dataset temp_potAs_out attribute frequencyUnit minute
+pmx subshell oozie set dataset temp_potAs_out attribute startTime 2012-09-25T00:00Z
+pmx subshell oozie add job TempPotAsJob PotentialAsJob /opt/etc/oozie/PotentialAsCubes
+pmx subshell oozie set job TempPotAsJob attribute jobFrequency 1440
+pmx subshell oozie set job TempPotAsJob attribute jobStart 2012-09-26T00:00Z
+pmx subshell oozie set job TempPotAsJob attribute jobEnd 2012-09-27T00:00Z
+pmx subshell oozie set job TempPotAsJob attribute frequencyUnit minute
+pmx subshell oozie set job TempPotAsJob action ExecuteRollUpJob attribute inputDatasets ds_rollup_in
+pmx subshell oozie set job TempPotAsJob action ExecuteRollUpJob attribute jarFile /opt/tms/java/CubeCreator.jar
+pmx subshell oozie set job TempPotAsJob action ExecuteRollUpJob attribute mainClass com.guavus.mapred.reflex.bizreflex.job.UnRolledUpJob.UnRolledUpCubes
+pmx subshell oozie set job TempPotAsJob action ExecuteRollUpJob attribute configFile /data/IBS/config_aslist.xml
+pmx subshell oozie set job TempPotAsJob action ExecuteRollUpJob attribute outputDataset ds_rollup_out
+pmx subshell oozie set job TempPotAsJob action ExecuteRollUpJob attribute instaPort 11111
+pmx subshell oozie set job TempPotAsJob action ExecuteRollUpJob attribute instaHost 108.55.163.93 
+pmx subshell oozie set job TempPotAsJob action ExecutePotentialAsJob attribute inputDatasets ds_rollup_out
+pmx subshell oozie set job TempPotAsJob action ExecutePotentialAsJob attribute jarFile /opt/tms/java/CubeCreator.jar
+pmx subshell oozie set job TempPotAsJob action ExecutePotentialAsJob attribute mainClass com.guavus.mapred.reflex.bizreflex.job.PotentialAsJob.PotentialAs
+pmx subshell oozie set job TempPotAsJob action ExecutePotentialAsJob attribute configFile /data/IBS/config_aslist.xml
+pmx subshell oozie set job TempPotAsJob action ExecutePotentialAsJob attribute outputDataset temp_potAs_out
+wr mem

@@ -1,0 +1,80 @@
+
+
+en
+conf t
+pmx subshell oozie add dataset exp_ds_base_out
+pmx subshell oozie set dataset exp_ds_base_out attribute startOffset 1
+pmx subshell oozie set dataset exp_ds_base_out attribute frequency 60
+pmx subshell oozie set dataset exp_ds_base_out attribute endOffset 1
+pmx subshell oozie set dataset exp_ds_base_out attribute outputOffset 1
+pmx subshell oozie set dataset exp_ds_base_out attribute path /data/BR_OUT/MasterJob/%Y/%M/%D/%H/X.MAPREDUCE.0.2
+pmx subshell oozie set dataset exp_ds_base_out attribute pathType hdfs
+pmx subshell oozie set dataset exp_ds_base_out attribute frequencyUnit minute
+pmx subshell oozie set dataset exp_ds_base_out attribute startTime 2013-05-24T07:00Z
+pmx subshell oozie add dataset exp_ds_prefix_out
+pmx subshell oozie set dataset exp_ds_prefix_out attribute startOffset 1
+pmx subshell oozie set dataset exp_ds_prefix_out attribute frequency 60
+pmx subshell oozie set dataset exp_ds_prefix_out attribute endOffset 1
+pmx subshell oozie set dataset exp_ds_prefix_out attribute outputOffset 1
+pmx subshell oozie set dataset exp_ds_prefix_out attribute doneFile _DONE
+pmx subshell oozie set dataset exp_ds_prefix_out attribute path /data/BR_OUT/PrefixJob/%Y/%M/%D/%H/
+pmx subshell oozie set dataset exp_ds_prefix_out attribute pathType hdfs
+pmx subshell oozie set dataset exp_ds_prefix_out attribute frequencyUnit minute
+pmx subshell oozie set dataset exp_ds_prefix_out attribute startTime 2013-05-24T07:00Z
+pmx subshell oozie add dataset exp_ds_bizr_out
+pmx subshell oozie set dataset exp_ds_bizr_out attribute startOffset 1
+pmx subshell oozie set dataset exp_ds_bizr_out attribute frequency 60
+pmx subshell oozie set dataset exp_ds_bizr_out attribute endOffset 1
+pmx subshell oozie set dataset exp_ds_bizr_out attribute outputOffset 1
+pmx subshell oozie set dataset exp_ds_bizr_out attribute doneFile _DONE
+pmx subshell oozie set dataset exp_ds_bizr_out attribute path /data/BR_OUT/BizRulesJob/%Y/%M/%D/%H/
+pmx subshell oozie set dataset exp_ds_bizr_out attribute pathType hdfs
+pmx subshell oozie set dataset exp_ds_bizr_out attribute frequencyUnit minute
+pmx subshell oozie set dataset exp_ds_bizr_out attribute startTime 2013-05-24T07:00Z
+pmx subshell oozie add dataset exp_ds_topAs_out
+pmx subshell oozie set dataset exp_ds_topAs_out attribute startOffset 1
+pmx subshell oozie set dataset exp_ds_topAs_out attribute frequency 60
+pmx subshell oozie set dataset exp_ds_topAs_out attribute endOffset 1
+pmx subshell oozie set dataset exp_ds_topAs_out attribute outputOffset 1
+pmx subshell oozie set dataset exp_ds_topAs_out attribute path /data/BR_OUT/TopAsJob/%Y/%M/%D/%H/X.MAPREDUCE.0.[0-1]
+pmx subshell oozie set dataset exp_ds_topAs_out attribute pathType hdfs
+pmx subshell oozie set dataset exp_ds_topAs_out attribute frequencyUnit minute
+pmx subshell oozie set dataset exp_ds_topAs_out attribute startTime 2013-05-24T07:00Z
+pmx subshell oozie add dataset exp_ds_topInt_out
+pmx subshell oozie set dataset exp_ds_topInt_out attribute startOffset 1
+pmx subshell oozie set dataset exp_ds_topInt_out attribute frequency 60
+pmx subshell oozie set dataset exp_ds_topInt_out attribute endOffset 1
+pmx subshell oozie set dataset exp_ds_topInt_out attribute outputOffset 1
+pmx subshell oozie set dataset exp_ds_topInt_out attribute doneFile _DONE
+pmx subshell oozie set dataset exp_ds_topInt_out attribute path /data/BR_OUT/TopIntJob/%Y/%M/%D/%H/
+pmx subshell oozie set dataset exp_ds_topInt_out attribute pathType hdfs
+pmx subshell oozie set dataset exp_ds_topInt_out attribute frequencyUnit minute
+pmx subshell oozie set dataset exp_ds_topInt_out attribute startTime 2013-05-24T07:00Z
+pmx subshell oozie add job export_job ExporterJob /opt/etc/oozie/CubeExporter
+pmx subshell oozie set job export_job attribute jobStart 2013-06-01T01:00Z
+pmx subshell oozie set job export_job attribute jobEnd 2033-04-01T00:00Z
+pmx subshell oozie set job export_job attribute jobFrequency 60
+pmx subshell oozie set job export_job attribute frequencyUnit minute
+pmx subshell oozie set job export_job action ExporterAction attribute binInterval 3600
+pmx subshell oozie set job export_job action ExporterAction attribute instaPort 11111
+pmx subshell oozie set job export_job action ExporterAction attribute instaHost 108.55.163.93 
+pmx subshell oozie set job export_job action ExporterAction attribute aggregationInterval -1
+pmx subshell oozie set job export_job action ExporterAction attribute className com.guavus.exporter.Exporter
+pmx subshell oozie set job export_job action ExporterAction attribute binClasses NPENTITY_60min
+pmx subshell oozie set job export_job action ExporterAction attribute binClasses 1hAggr
+pmx subshell oozie set job export_job action ExporterAction attribute binClasses INSTATIME_60min
+pmx subshell oozie set job export_job action ExporterAction attribute fileType Seq
+pmx subshell oozie set job export_job action ExporterAction attribute jarName /opt/tms/java/CubeCreator.jar
+pmx subshell oozie set job export_job action ExporterAction attribute maxTimeout 600
+pmx subshell oozie set job export_job action ExporterAction attribute minTimeout 300
+pmx subshell oozie set job export_job action ExporterAction attribute retrySleep 300
+pmx subshell oozie set job export_job action ExporterAction attribute hadoopClientOption -Xmx20000M
+pmx subshell oozie set job export_job action ExporterAction attribute solutionName reflex.bizreflex
+pmx subshell oozie set job export_job action ExporterAction attribute binsToPersistOneTime 0
+pmx subshell oozie set job export_job action ExporterAction attribute useNoreserveInstaAPI true
+pmx subshell oozie set job export_job action ExporterAction attribute srcDatasets exp_ds_base_out
+pmx subshell oozie set job export_job action ExporterAction attribute srcDatasets exp_ds_prefix_out
+pmx subshell oozie set job export_job action ExporterAction attribute srcDatasets exp_ds_bizr_out
+pmx subshell oozie set job export_job action ExporterAction attribute srcDatasets exp_ds_topAs_out
+pmx subshell oozie set job export_job action ExporterAction attribute srcDatasets exp_ds_topInt_out
+wr mem

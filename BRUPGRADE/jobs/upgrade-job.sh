@@ -1,0 +1,12 @@
+/opt/tps/bin/pmx.py subshell oozie set job upgrade_prefix_job attribute jobStart 2013-11-12T01:00Z
+/opt/tps/bin/pmx.py subshell oozie set job bizrules_upgrade attribute jobStart 2013-11-12T01:00Z
+/opt/tps/bin/pmx.py subshell oozie set job upgrade_export_job attribute jobStart 2013-11-12T01:00Z
+/opt/tps/bin/pmx.py subshell oozie set job upgrade_prefix_job attribute jobEnd 2013-11-13T01:00Z
+/opt/tps/bin/pmx.py subshell oozie set job bizrules_upgrade attribute jobStart 2013-11-13T01:00Z
+/opt/tps/bin/pmx.py subshell oozie set job upgrade_export_job attribute jobStart 2013-11-13T01:00Z
+/opt/tps/bin/pmx.py subshell oozie set job aggregate_1d attribute jobStart 2013-11-12T01:00Z
+/opt/tps/bin/pmx.py subshell oozie set job export_agg_1d attribute jobStart 2013-11-12T01:00Z
+/opt/tps/bin/pmx.py subshell oozie set job aggregate_1w attribute jobStart 2013-11-12T01:00Z
+/opt/tps/bin/pmx.py subshell oozie set job export_agg_1w attribute jobStart 2013-11-12T01:00Z
+/opt/tps/bin/pmx.py subshell oozie set job aggregate_1m attribute jobStart 2013-11-12T01:00Z
+/opt/tps/bin/pmx.py subshell oozie set job export_agg_1m attribute jobStart 2013-11-12T01:00Z
